@@ -50,14 +50,20 @@ public class Controller extends JPanel implements ActionListener, ChangeListener
         timer.start();
         add(button);
 
-        JPanel sliderPane = new JPanel();  //för formattering
+        /*JPanel sliderPane = new JPanel();  //för formattering
 
         sliderPane.add(sliderLLabel);
         sliderPane.add(LSlider);
         sliderPane.add(deltaSlider);
-        sliderPane.add(sliderDeltaLabel);
+        sliderPane.add(sliderDeltaLabel);*/
 
-        add(sliderPane);
+        add(sliderLLabel);
+        add(LSlider);
+        add(deltaSlider);
+        add(sliderDeltaLabel);
+        setPreferredSize(new Dimension(150,95));
+
+        //add(sliderPane);
 
 
         try{outputStream = new PrintWriter(new FileWriter("CSVfile.txt"));
@@ -124,7 +130,7 @@ public class Controller extends JPanel implements ActionListener, ChangeListener
             }
         }
         if (measuring) {
-            saveToFileNoSb();
+            saveToFile();
         }
 
         time = time + timer.getDelay();

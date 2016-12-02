@@ -13,7 +13,7 @@ public class MyFrame extends JFrame {
         //setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
         setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
 
-        this.model = new Model(10000);  // vid 2000 - 3000 börjar det gå långsammare med endast string i saveToFile
+        this.model = new Model(1000);  // vid 2000 - 3000 börjar det gå långsammare med endast string i saveToFile
         this.view = new View(model);    // 10000 går då inte alls, medan 10000 inga problem med stringbuilder
 
         Controller controller = new Controller(model, view);
