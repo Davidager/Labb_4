@@ -50,21 +50,11 @@ public class Controller extends JPanel implements ActionListener, ChangeListener
         timer.start();
         add(button);
 
-        /*JPanel sliderPane = new JPanel();  //för formattering
-
-        sliderPane.add(sliderLLabel);
-        sliderPane.add(LSlider);
-        sliderPane.add(deltaSlider);
-        sliderPane.add(sliderDeltaLabel);*/
-
         add(sliderLLabel);
         add(LSlider);
         add(deltaSlider);
         add(sliderDeltaLabel);
         setPreferredSize(new Dimension(150,95));
-
-        //add(sliderPane);
-
 
         try{outputStream = new PrintWriter(new FileWriter("CSVfile.txt"));
         } catch (IOException f) {}
@@ -93,8 +83,6 @@ public class Controller extends JPanel implements ActionListener, ChangeListener
             stringBuilder.setLength(stringBuilder.length()-10);    //tar bort decimaler
         }
 
-        //System.out.println(stringBuilder);
-
         outputStream.println(stringBuilder);
         outputStream.flush();
     }
@@ -111,8 +99,6 @@ public class Controller extends JPanel implements ActionListener, ChangeListener
 
             outString = outString.substring(0, outString.length() -10);    //tar bort decimaler
         }
-
-        //System.out.println(outString);
 
         outputStream.println(outString);
         outputStream.flush();
