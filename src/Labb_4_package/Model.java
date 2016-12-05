@@ -8,11 +8,13 @@ import java.util.Hashtable;
  * Created by David on 30-Nov-16.
  */
 public class Model {
-    private int L=3;
+    private int L=1;
     private int numPart;
 
     private double X_SIZE = 300;
     private double Y_SIZE = 300;
+
+    private double maxDistance = 1.3; // Hur nära partikel kan vara en annan partikel som är stuck
 
 
     private Particle[] particleArray;
@@ -83,12 +85,11 @@ public class Model {
         for (int index : stuckMainDivisionList ) {
             Particle particle2 = particleArray[index];
             double x2 = particle2.xCoord;
-            if (x2 < x + 1.1 && x2 > x - 1.1) {
+            if (x2 < x + maxDistance && x2 > x - maxDistance) {
                 double y2 = particle2.yCoord;
-                if (y2 < y + 1.1 && y2 > y - 1.1) {
-                    if (particle != particle2) {
-                        return true;
-                    }
+                if (y2 < y + maxDistance && y2 > y - maxDistance) {
+                    return true;
+
                 }
             }
         }
@@ -97,18 +98,14 @@ public class Model {
             for (int index : stuckEdgeDivisionList ) {
                 Particle particle2 = particleArray[index];
                 double x2 = particle2.xCoord;
-                if (x2 < x + 1.1 && x2 > x - 1.1) {
+                if (x2 < x + maxDistance && x2 > x - maxDistance) {
                     double y2 = particle2.yCoord;
-                    if (y2 < y + 1.1 && y2 > y - 1.1) {
-                        if (particle != particle2) {
-                            return true;
-                        }
+                    if (y2 < y + maxDistance && y2 > y - maxDistance) {
+                        return true;
                     }
                 }
             }
         }
-
-
 
         return false;
     }
@@ -198,14 +195,14 @@ public class Model {
                     edgeDivList.add(arrayIndex);
                 }
                 stuckArray23[arrayIndex] = 1;
-            /*} else if (((xCoord-150)*(xCoord-150))+((yCoord-150)*(yCoord-150)) > 46*46 &&
+            } else if (((xCoord-150)*(xCoord-150))+((yCoord-150)*(yCoord-150)) > 46*46 &&
                     ((xCoord-150)*(xCoord-150))+((yCoord-150)*(yCoord-150)) < 46.5*46.5) {
                         ArrayList mainDivList = (ArrayList)divisions.get(mainDivision);
                         mainDivList.add(arrayIndex);
                         if (edgeDivision != -1) {
                             ArrayList edgeDivList = (ArrayList)divisions.get(edgeDivision);
                             edgeDivList.add(arrayIndex);
-                        }*/
+                        }
             } else {
                     double theta = Math.random()*2*Math.PI;
                     xCoord = xCoord + L*Math.cos(theta);

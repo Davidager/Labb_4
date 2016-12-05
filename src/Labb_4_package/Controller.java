@@ -34,7 +34,7 @@ public class Controller extends JPanel implements ActionListener, ChangeListener
         this.model = model;
         this.view = view;
 
-        LSlider = new JSlider(1,5,model.getL());
+        LSlider = new JSlider(0,3,model.getL());
         deltaSlider = new JSlider(10,200,100);
 
         LSlider.addChangeListener(this);
@@ -54,7 +54,7 @@ public class Controller extends JPanel implements ActionListener, ChangeListener
         add(LSlider);
         add(deltaSlider);
         add(sliderDeltaLabel);
-        setPreferredSize(new Dimension(150,95));
+        setPreferredSize(new Dimension(150,120));
 
         try{outputStream = new PrintWriter(new FileWriter("CSVfile.txt"));
         } catch (IOException f) {}
@@ -115,15 +115,17 @@ public class Controller extends JPanel implements ActionListener, ChangeListener
                 button.setText("Stoppa mätning");
             }
         }
-        if (measuring) {
-            saveToFile();
+
+        if (e.getSource() == timer) {
+            if (measuring) {
+                saveToFile();
+            }
+
+            time = time + timer.getDelay();
+
+            model.updateParticles();
+            view.repaint();
         }
-
-        time = time + timer.getDelay();
-
-        model.updateParticles();
-        view.repaint();
-
     }
 
 
